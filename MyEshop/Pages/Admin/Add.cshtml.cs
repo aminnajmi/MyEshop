@@ -21,15 +21,16 @@ namespace MyEshop.Pages.Admin
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
+            {
                 return Page();
+            }
 
             var item = new Item
             {
                 Price = Product.Price,
                 QuantityInStock = Product.QuantityInStock,
             };
-            //_context.Add(item);
-            //_context.SaveChanges();
+
             var pro = new Product
             {
                 Name = Product.Name,
@@ -40,11 +41,7 @@ namespace MyEshop.Pages.Admin
             pro.Item = item;
 
             _context.Add(pro);
-            //_context.SaveChanges();
-            //_context.Add(pro);
-            //_context.SaveChanges();
-           // pro.ItemId = Product.Id;
-            //_context.SaveChanges();
+
             if (Product.Picture?.Length>0)
             {
                 string filepath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","images",pro.Id+Path.GetExtension(Product.Picture.FileName));
