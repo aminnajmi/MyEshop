@@ -45,6 +45,7 @@ namespace MyEshop.Pages.Admin
             if (Product.Picture?.Length>0)
             {
                 string filepath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","images",pro.Id+Path.GetExtension(Product.Picture.FileName));
+
                 using(var stream = new FileStream(filepath,FileMode.Create))
                 {
                     Product.Picture.CopyTo(stream);
