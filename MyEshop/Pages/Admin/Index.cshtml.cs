@@ -1,28 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MyEshop.Data;
 using MyEshop.Models;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace MyEshop.Pages.Admin
 {
     public class IndexModel : PageModel
     {
-        private readonly MyEshopContext _context;
+        private MyEshopContext _context;
+
         public IndexModel(MyEshopContext context)
         {
-            _context = context; 
+            _context = context;
         }
-
         public IEnumerable<Product> Products { get; set; }
         public void OnGet()
         {
             Products = _context.Products.Include(p => p.Item);
         }
-        public void OnPost() 
-        { 
+
+        public void OnPost()
+        {
+
         }
     }
 }
